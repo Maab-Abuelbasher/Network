@@ -1,7 +1,8 @@
 # This program will connect to a network device and retrieve the interface status using Netmiko. It will then display the interface status in a readable format.
 
-#import netmiko
+#import netmiko and os
 from netmiko import ConnectHandler  
+import os
 
 show_commands = [
     "show ip interface brief",
@@ -11,7 +12,7 @@ show_commands = [
 
 # Connect to switch using SSH
 connection = ConnectHandler(
-    host="192.168.8.20", username="admin", password="123456", device_type="cisco_ios")
+    host=os.environ.get("router-ip"), username="admin", password=os.environ.get("router-password"), device_type="cisco_ios")
 
 output = ""
 for cmd in show_commands:

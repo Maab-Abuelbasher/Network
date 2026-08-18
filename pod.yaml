@@ -7,3 +7,8 @@ spec:
     - name: interface-status
       image: interface_status:1.0
       imagePullPolicy: Never
+      envFrom:                   
+        - configMapRef:
+            name: router-ip
+        - secretRef:
+            name: router-password
